@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Tool</title>
+    <script type="text/javascript" src="assets/plunc.js"></script>
+    <script type="module" src="app/tool.js"></script>
+    <script src="assets/tailwind.js"></script>
+    <script src="assets/papaparse.js"></script>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <main plunc-app="DynamicTool" class="px-6 py-6"></main>
+    <template plunc-name="DynamicTool">
+      <section plunc-component="MainPageComponent"></section>
+    </template>
+    <template plunc-name="MainPageComponent">
+      <div class="p-6 bg-white rounded-lg shadow-md w-full max-w-sm mx-auto">
+        <h1 class="text-2xl font-extrabold mb-2 text-gray-800">{{toolName}}</h1>
+        <p class="text-gray-600 mb-4">{{toolDescription}}</p>
+        <button
+          class="w-full mt-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition-colors duration-200"
+          plunc-click="downloadTemplateCSV()"
+        >
+          Download Template CSV
+        </button>
+      </div>
+
+      <div
+        class="px-6 py-6 w-full space-y-4 bg-white rounded-lg shadow-md mt-4"
+      >
+        <!-- Token Input -->
+        <div class="w-full">
+          <label class="block text-gray-600 mb-1">Token</label>
+          <div class="relative w-full">
+            <input
+              type="text"
+              plunc-model="token"
+              class="w-full pl-3 pr-3 py-2 bg-transparent border border-gray-300 rounded-lg shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-100 outline-none"
+              placeholder="Enter your token"
+            />
+          </div>
+        </div>
+
+        <!-- File Selector -->
+        <div class="w-full">
+          <label class="block text-gray-600 mb-1">Select CSV File</label>
+          <input
+            id="file-input"
+            type="file"
+            accept=".csv"
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+          />
+        </div>
+
+        <!-- Ticket Number Input -->
+        <div class="w-full">
+          <label class="block text-gray-600 mb-1">Ticket Number</label>
+          <div class="relative w-full">
+            <input
+              type="text"
+              plunc-model="ticketNumber"
+              class="w-full pl-3 pr-3 py-2 bg-transparent border border-gray-300 rounded-lg shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-100 outline-none"
+              placeholder="Enter ticket number"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Execute Button -->
+      <div class="w-full" plunc-block="ExecuteButtonBlock">
+        <button
+          plunc-style="getButtonStyle()"
+          class="execute-button mt-4 w-full px-4 py-3 bg-blue-600 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition-colors duration-200"
+          plunc-click="executeAction()"
+        >
+          Execute
+        </button>
+      </div>
+    </template>
+    <style>
+      /* Base button (optional enhancement) */
+      .execute-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Loading state */
+      .execute-button.is-loading {
+        pointer-events: none;
+        opacity: 0.8;
+        color: transparent; /* Hide text */
+      }
+
+      /* Spinner */
+      .execute-button.is-loading::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border: 2px solid white;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: execute-spin 0.7s linear infinite;
+      }
+
+      /* Animation */
+      @keyframes execute-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </body>
+</html>

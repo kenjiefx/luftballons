@@ -268,6 +268,10 @@ export type PluncAppInternalRepresentation = {
   __onReady: (listener: () => Promise<void>) => void;
 };
 
+export type PluncAppAPI = {
+  ready: (listener: () => Promise<void>) => Promise<void>;
+};
+
 export type TemplatesMap = Map<string, string>;
 
 export const app: PluncAppInstance = {
@@ -287,3 +291,5 @@ export const app: PluncAppInstance = {
     // Implementation goes here
   },
 };
+
+export type PatchAPI = (blockName?: string) => Promise<void>;

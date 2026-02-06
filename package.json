@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/chrome": "^0.1.36",
+    "@types/papaparse": "^5.5.2"
+  }
+}
