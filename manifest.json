@@ -1,0 +1,21 @@
+{
+    "name": "Yotbox",
+    "description": "A helper tool for your onsite Yotpo widgets",
+    "version": "1.0.4",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "src/index.html"
+    },
+    "icons": {
+    },
+    "background": {
+      
+    },
+    "permissions": ["storage"],
+    "content_scripts": [
+      
+    ],
+    "web_accessible_resources": [
+      
+    ]
+}
